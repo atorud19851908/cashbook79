@@ -3,8 +3,10 @@ import { Route, Routes, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import UsdDollor from './UsdDollor';
 import UzbSum from './UzbSum';
+import Plastik from './Plastik'
+import NotFound from './NotFound'
 import './App.css'
-import NotFound from './NotFound';
+
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
 
    li  {
     list-style: none;
-    display: inline-block;
+    display:block;
     padding-left:15px;
    }
 
@@ -36,6 +38,7 @@ function App() {
          &:focus {
           color:red;
          }
+        
       }
 
       @media(max-width:700px){
@@ -43,6 +46,12 @@ function App() {
           display: inline-block;
           font-size: 18px;
           }
+
+          li  {
+            list-style: none;
+            display:inline-block;
+           
+           } 
       }   
 `;
   
@@ -60,12 +69,18 @@ function App() {
           USD
           </Link>
           </li>
+          <li>
+          <Link to="/plastik">
+          PLASTIK
+          </Link>
+          </li>
       </ul>
     </LinkBlock>
         <Routes>
           <Route path='/' element={<UzbSum />} />
           <Route path='/dollor' element={<UsdDollor />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path='/plastik' element={<Plastik/>} />
+           <Route path="*" element={<NotFound />} />
         </Routes>
       
 </>

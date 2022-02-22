@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useCbSetMode } from '../CbContext';
+import { useCbSetMode } from '../CbContext2';
 import { MdDelete } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
 import { lighten } from 'polished';
-// import firebase from './util/firebase';
 
 const handleTypeColor = type => {
     switch (type) {
@@ -124,20 +123,8 @@ const CbItemBlock = styled.div`
     }
 `;
 
-function CbItem({ id, type, text, price,time,date }) {
+function CbItem2({ id, type, text, price,time,date }) {
     const setMode = useCbSetMode();
-
-    // useEffect(() => {
-    //     const todoRef = firebase.database().ref('Todo');
-    //     todoRef.on('value', (snapshot) => {
-    //       const todos = snapshot.val();
-    //       const todoList = [];
-    //       for (let id in todos) {
-    //         todoList.push({ id, ...todos[id] });
-    //       }
-    //       setTodoList(todoList);
-    //     });
-    //   }, []);
 
     const onEdit = () => setMode({
         modeName: 'edit',
@@ -172,7 +159,7 @@ function CbItem({ id, type, text, price,time,date }) {
             <Text text={text} type={type} > {text ? text : '--'} </Text>
             <Price sum ={sum}>
 
-              <span>{sum ? sum.toLocaleString() : 0 } so'm </span>
+              <span>{sum ? sum.toLocaleString() : 0 } So'm</span>
              </Price>
             <Edit onClick={onEdit}>
                 <FaPen />
@@ -184,4 +171,4 @@ function CbItem({ id, type, text, price,time,date }) {
     );
 }
 
-export default CbItem;
+export default CbItem2;

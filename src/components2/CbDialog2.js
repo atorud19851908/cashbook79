@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider, keyframes, css } from 'styled-components';
-import { useCbDispatch, useCbNextId, useCbMode, useCbSetMode } from '../CbContext';
+import { useCbDispatch, useCbNextId, useCbMode, useCbSetMode } from '../CbContext2';
 import { lighten, darken } from 'polished';
-// import firebase from './util/firebase'
+
 
 const fadeIn = keyframes`
     from {
@@ -102,20 +102,17 @@ color: #03045e;
  text-align:center;
  text-transform:capitalize;
  margin:0 auto;
- letter-spacing: 1px;
 
  @media(min-width:700px){
-    width: 300px;
+    width: 350px;
     height:70%;
-     padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
     color: #03045e;
      background-color:#bee3db;
      text-align:center;
      text-transform:capitalize;
      margin:0 auto;
-     letter-spacing: 1px;
-     z-index: 1000;
 }
 
 `;
@@ -196,7 +193,7 @@ const Button = styled.button`
     }
 `;
 
-function CbDialog() {
+function CbDialog2() {
     const mode = useCbMode();
     const setMode = useCbSetMode();
     const { modeName, expense: { id: modeId, type: modeTypeData, text: modeTextData, price: modePriceData,time: modeTimeData, date: modeDateData } } = mode;
@@ -226,7 +223,7 @@ function CbDialog() {
     const onSubmit = e => {
         e.preventDefault();
         dispatch({
-            type: 'CREATE',
+            type: 'CREATE2',
             expense: {
                 id: uuid,
                 time:time, 
@@ -236,32 +233,17 @@ function CbDialog() {
                 date: date
                  
             }
-            
            
         });
          
         setMode({ ...mode, modeName: 'none' });
-      
+        
     }
 
-    // const createCash = () => {
-    //     const cashRef = firebase.database().ref('cash');
-    //     const cash = {
-    //         id: uuid,
-    //         time:time, 
-    //         type: type, 
-    //         text: text,
-    //         price: price,
-    //         date: date
-    //     };
-    
-    //     cashRef.push(cash);
-    //   };
-     
 
     const onRemove = () => {
         dispatch({
-            type: 'REMOVE',
+            type: 'REMOVE2',
             id: modeId
         });
         setMode({ ...mode, modeName: 'none' });
@@ -275,7 +257,6 @@ function CbDialog() {
 
 
     let sum = parseInt(price)
-
     if (modeName === 'none') {
         return null;
 
@@ -299,7 +280,7 @@ function CbDialog() {
                                     type='text'
                                     value={text}
                                     onChange={onTextChange}
-                                    placeholder = 'Ism '
+                                    placeholder = 'Ism'
 
                                 />
                                 <h2>Summa</h2>
@@ -308,7 +289,7 @@ function CbDialog() {
                                     min='0'
                                     value={price}
                                     onChange={onPriceChange}
-                                   placeholder = 'Summa'
+                                    placeholder = 'Summa'
                                 />
                                 <h2>Turi</h2>
                                 <Select
@@ -345,15 +326,15 @@ function CbDialog() {
                     <DarkBackground>
                             <Result>
                             <h1>Ma'lumot</h1>
-                            <h2> So'm</h2>
+                              <h2>Plastik</h2>
                                <h2>{type}</h2>
-                             <h3> 
-                               {date}
+                             <h3>
+                                 {date}
                                  <br/>
-                                {time}
-                             </h3>
+                                 {time}
+                              </h3>
                               <h1> {text}</h1>
-                              <h2> {sum.toLocaleString()} so'm</h2>
+                              <h2>{sum.toLocaleString()} So'm</h2>
                             <ButtonGroup>
                             <Button color='gray' onClick={onCancel}>Orqaga</Button>
                             </ButtonGroup>
@@ -388,4 +369,4 @@ function CbDialog() {
     }
 }
 
-export default CbDialog;
+export default CbDialog2;

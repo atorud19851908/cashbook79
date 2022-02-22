@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useCbState } from '../CbContext1';
-import logo from './dollor.png'
+import { useCbState } from '../CbContext2';
+import {FaCcMastercard} from 'react-icons/fa';
+
 
 const CbHeadBlock = styled.div`
-background-color:#278664;
+background-color:#29c6cd;
 border-radius:15px;
 box-shadow: rgb(0 0 0 / 85%) 0px 14px 28px, rgb(0 0 0 / 41%) 0px 10px 10px;
 color: #333;
@@ -17,16 +18,16 @@ div {
     align-content:center; 
 }
 
+// .total {
+//     margin-left:10%;
+// }
 
 h3 {
-    
     text-align: center;
     margin: 0;
    }
 
 h4 {
-    display: flex;
-    justify-content: center;
     font-size: 16px;
     text-align:center;
     margin-top:0;
@@ -41,60 +42,44 @@ strong {
     padding-left:5px;
 }
 
-
-img {
-    width:22px;
-    height:22px; 
 }
 
+
+
 @media(min-width: 700px){
-    
-   background-color:#278664;
+   background-color:#29c6cd;
    border-radius:15px;
    box-shadow: rgb(0 0 0 / 85%) 0px 14px 28px, rgb(0 0 0 / 41%) 0px 10px 10px;
    color: #333;
    padding:10px;
    letter-spacing: 2px;
-
+    
    h3 {
-       
-    font-size:26px;  
+     font-size:26px;  
     text-align: center;
     margin: 0;
-  }
-  
-   div {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       align-content:center; 
    }
-
-   .balans {
-    align-items: center;
-   }
-  
    
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content:center; 
+    }
+
     h4 {
-       
         font-size: 25px;
         text-align:center;
         margin:0 20px;
         padding-top: 4px;
         padding-bottom:10px;
-       
     }
 
-    img {
-        width:32px;
-        height:32px; 
-    }
-
-
+   
 }
 `;
 
-function CbHead1() {
+function CbHead2() {
     const cashbook = useCbState();
 
        const income = cashbook
@@ -113,31 +98,35 @@ function CbHead1() {
         .filter(expense => expense.type === 'Chiqim') ? 
         income - expense : '';
 
-
+           
        
             return (
                 <CbHeadBlock>
-                   <div>
+                   
+                    <div>
                     <h4>Kirim:
-                    <img src={logo} alt = "logo" />
                     <strong>
-                       {income.toLocaleString()} 
+                       {income.toLocaleString()}
+                       so'm 
                      </strong>
+                     <FaCcMastercard style={{color: '#03045e',
+                      width:'50px',height: '40px', display: 'block'
+                    }} />
+                     
                     </h4>
                     <h4>Chiqim:
-                    <img src={logo} alt = "logo" />
                     <strong>
-                       {expense.toLocaleString()} 
+                       {expense.toLocaleString()}
+                       so'm 
                      </strong>
                     </h4>
                     </div>
-                 
-                    <h4>Balansingiz:
-                    <img src={logo} alt = "logo" /> 
+                    <h3 className='total'>Balansingiz:
                     <strong>
-                        {result.toLocaleString()}
-                    </strong> 
-                    </h4>
+                       {result.toLocaleString()} 
+                       so'm
+                    </strong>
+                    </h3>
                   
                 </CbHeadBlock>
             );
@@ -148,4 +137,4 @@ function CbHead1() {
 
     
 
-export default CbHead1;
+export default CbHead2;
