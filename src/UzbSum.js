@@ -13,7 +13,7 @@ function UzbSum() {
    body {
      width:100%;
      height:100%;
-     background: #0077b6;
+     background: #c0d5e0;
      font-family: 'Oswald', sans-serif;
      font-weight: 900;
      margin-top:0;

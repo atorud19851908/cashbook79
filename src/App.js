@@ -28,7 +28,7 @@ function App() {
    }
 
    li a {
-         color:#fff;
+         color:#333;
          font-wieght: bold;
          letter-spacing: 2px;
          font-family: Nunito,sans-serif;

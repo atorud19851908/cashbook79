@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useCbState } from '../CbContext2';
-import {FaCcMastercard} from 'react-icons/fa';
-
+import { FaCcMastercard } from 'react-icons/fa';
 
 const CbHeadBlock = styled.div`
 background-color:#29c6cd;
@@ -38,8 +37,12 @@ h4 {
 }
 
 strong {
-    color: red;
+    color: blue;
     padding-left:5px;
+}
+
+.minus {
+    color: red;
 }
 
 }
@@ -80,61 +83,57 @@ strong {
 `;
 
 function CbHead2() {
-    const cashbook = useCbState();
+  const cashbook = useCbState();
 
-       const income = cashbook
-       .filter(expense => expense.type !== 'Chiqim')
-        .map(expense => expense.price)
-        .reduce((acc, curr) => acc + parseInt(curr, 10), 0) 
-        
-       
+  const income = cashbook
+    .filter((expense) => expense.type !== 'Chiqim')
+    .map((expense) => expense.price)
+    .reduce((acc, curr) => acc + parseInt(curr, 10), 0);
 
-        const expense =  cashbook
-        .filter(expense => expense.type === 'Chiqim')
-        .map( expense => expense.price)
-        .reduce((ac, cur) => ac + parseInt(cur, 10), 0) 
+  const expense = cashbook
+    .filter((expense) => expense.type === 'Chiqim')
+    .map((expense) => expense.price)
+    .reduce((ac, cur) => ac + parseInt(cur, 10), 0);
 
-        const result =  cashbook
-        .filter(expense => expense.type === 'Chiqim') ? 
-        income - expense : '';
+  const result = cashbook.filter((expense) => expense.type === 'Chiqim')
+    ? income - expense
+    : '';
 
-           
-       
-            return (
-                <CbHeadBlock>
-                   
-                    <div>
-                    <h4>Kirim:
-                    <strong>
-                       {income.toLocaleString()}
-                       so'm 
-                     </strong>
-                     <FaCcMastercard style={{color: '#03045e',
-                      width:'50px',height: '40px', display: 'block'
-                    }} />
-                     
-                    </h4>
-                    <h4>Chiqim:
-                    <strong>
-                       {expense.toLocaleString()}
-                       so'm 
-                     </strong>
-                    </h4>
-                    </div>
-                    <h3 className='total'>Balansingiz:
-                    <strong>
-                       {result.toLocaleString()} 
-                       so'm
-                    </strong>
-                    </h3>
-                  
-                </CbHeadBlock>
-            );
-            }
-    
-        
-    
-
-    
+  return (
+    <CbHeadBlock>
+      <div>
+        <h4>
+          Kirim:
+          <strong>
+            {income.toLocaleString()}
+            so'm
+          </strong>
+          <FaCcMastercard
+            style={{
+              color: '#03045e',
+              width: '50px',
+              height: '40px',
+              display: 'block',
+            }}
+          />
+        </h4>
+        <h4>
+          Chiqim:
+          <strong className="minus">
+            {expense.toLocaleString()}
+            so'm
+          </strong>
+        </h4>
+      </div>
+      <h3 className="total">
+        Balansingiz:
+        <strong>
+          {result.toLocaleString()}
+          so'm
+        </strong>
+      </h3>
+    </CbHeadBlock>
+  );
+}
 
 export default CbHead2;
